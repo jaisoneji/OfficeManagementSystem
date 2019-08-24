@@ -1,0 +1,530 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package office;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Jai
+ */
+public class HomeAdmin extends javax.swing.JFrame {
+    Connection conn=null;
+    PreparedStatement ps=null;
+    ResultSet rs=null;
+    WelcomeAdmin w1 = new WelcomeAdmin();
+    Candidate c1 = new Candidate();
+    SalaryPanel sp=new SalaryPanel();
+    LoginAd la=new LoginAd();
+    
+    /**
+     * Creates new form HomeAdmin
+     */
+    public HomeAdmin() {
+        initComponents();
+        conn=MyConnect.connectDatabase();
+        this.setLocationRelativeTo(null);
+    }
+    
+     private void processManagerRegister(){
+        try{
+        String sql="INSERT INTO managerdetails (firstname, lastname, address, mobile, gender, doj, salary, username, "
+                + "password, cpassword) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        ps=conn.prepareStatement(sql);
+        ps.setString(1,w1.getManagerFirstName());
+            System.out.println("1");
+        ps.setString(2,w1.getManagerLastName());
+        System.out.println("2");
+        ps.setString(3,w1.getManagerAddress());
+        
+        System.out.println("3");
+        ps.setString(4,w1.getManagerMobile());
+        System.out.println("4");
+        ps.setString(5,w1.getManagerGender());
+        System.out.println("5");
+        
+        java.util.Date utilManagerDate = w1.getManagerDOJ();
+        
+        SimpleDateFormat dateManagerFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String stringManagerDate= dateManagerFormat.format(utilManagerDate);
+            
+        
+        
+        ps.setString(6,stringManagerDate);
+        //return sqlDate;
+        System.out.println("6");
+        
+        
+        ps.setString(7,w1.getManagerSalary());
+        System.out.println("7");
+        ps.setString(8,w1.getManagerUsername());
+        
+            System.out.println("8");
+        ps.setString(9,w1.getManagerPassword());
+        System.out.println("9");
+        ps.setString(10,w1.getManagerConfirmPassword());
+        System.out.println("10");
+        ps.execute();
+            System.out.println("11");
+        JOptionPane.showMessageDialog(null,"Successs to manager registration" ,"HomeAdmin",JOptionPane.INFORMATION_MESSAGE );
+        
+        }
+    
+        catch(SQLException e){
+            
+        JOptionPane.showMessageDialog(null,"issue" + e.getMessage() );
+        
+        }
+    }
+
+     public static HomeAdmin getHomeAdmin()
+    {
+        return homeadmin;
+    }
+     
+      public void registerManagerAction(){
+       processManagerRegister();
+   }
+      
+      private void processCandidateRegister(){
+        try{
+        String sql1="INSERT INTO candidate (firstname, lastname, address, mobile, gender, dob, emailid, "
+                + "hobby, nationality) VALUES (?,?,?,?,?,?,?,?,?)";
+        ps=conn.prepareStatement(sql1);
+        ps.setString(1,c1.getCandidateFirstName());
+            System.out.println("1");
+        ps.setString(2,c1.getCandidateLastName());
+        System.out.println("2");
+        ps.setString(3,c1.getCandidateAddress());
+        
+        System.out.println("3");
+        ps.setString(4,c1.getCandidateMobile());
+        System.out.println("4");
+        ps.setString(5,c1.getCandidateGender());
+        System.out.println("5");
+        
+        java.util.Date utilCandidateDate = c1.getCandidateDOB();
+        
+        SimpleDateFormat dateCandidateFormat = new SimpleDateFormat("yyyy-MM-dd");
+     String stringCandidateDate= dateCandidateFormat.format(utilCandidateDate);
+            
+        
+        
+       ps.setString(6,stringCandidateDate);
+       // return sqlDate;
+        System.out.println("6");
+        
+        
+        ps.setString(7,c1.getCandidateEmailid());
+        System.out.println("7");
+        ps.setString(8,c1.getCandidateHobby());
+        
+            System.out.println("8");
+        ps.setString(9,c1.getCandidateNationality());
+        System.out.println("9");
+        
+        ps.execute();
+            System.out.println("11");
+        JOptionPane.showMessageDialog(null,"Successs to Candidate registration" ,"HomeAdmin",JOptionPane.INFORMATION_MESSAGE );
+        
+        }
+    
+        catch(SQLException e){
+            
+        JOptionPane.showMessageDialog(null,"issue" + e.getMessage() );
+        
+        }
+    }
+      
+      public void registerCandidateAction(){
+       processCandidateRegister();
+   }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        pnlMain = new javax.swing.JPanel();
+        jPanel2_base = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6Min = new javax.swing.JLabel();
+        jLabel5Cut = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        pnlAddProject3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        lblAddManager = new javax.swing.JLabel();
+        pnlProjectDetails = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        lblAddCandidate = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblSalaryStatus = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        pnlMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        jPanel2_base.setBackground(new java.awt.Color(188, 124, 156));
+        jPanel2_base.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(122, 89, 128));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6Min.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6Min.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6Min.setText("-");
+        jLabel6Min.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6Min.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MinMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel6Min, new org.netbeans.lib.awtextra.AbsoluteConstraints(941, 11, 26, -1));
+
+        jLabel5Cut.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5Cut.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5Cut.setText("X");
+        jLabel5Cut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5Cut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5CutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5Cut, new org.netbeans.lib.awtextra.AbsoluteConstraints(977, 0, 20, 50));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Office Management System");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 9, -1, -1));
+
+        jPanel6.setBackground(new java.awt.Color(122, 89, 128));
+
+        pnlAddProject3.setBackground(new java.awt.Color(188, 124, 156));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/office/photo/Manager_30px.png"))); // NOI18N
+
+        lblAddManager.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAddManager.setForeground(new java.awt.Color(255, 255, 255));
+        lblAddManager.setText("Add Manager");
+        lblAddManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAddManagerMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAddProject3Layout = new javax.swing.GroupLayout(pnlAddProject3);
+        pnlAddProject3.setLayout(pnlAddProject3Layout);
+        pnlAddProject3Layout.setHorizontalGroup(
+            pnlAddProject3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAddProject3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(lblAddManager)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlAddProject3Layout.setVerticalGroup(
+            pnlAddProject3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+            .addGroup(pnlAddProject3Layout.createSequentialGroup()
+                .addComponent(lblAddManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pnlProjectDetails.setBackground(new java.awt.Color(188, 124, 156));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/office/photo/Download Resume_30px.png"))); // NOI18N
+
+        lblAddCandidate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAddCandidate.setForeground(new java.awt.Color(255, 255, 255));
+        lblAddCandidate.setText("Add Candidate");
+        lblAddCandidate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAddCandidateMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlProjectDetailsLayout = new javax.swing.GroupLayout(pnlProjectDetails);
+        pnlProjectDetails.setLayout(pnlProjectDetailsLayout);
+        pnlProjectDetailsLayout.setHorizontalGroup(
+            pnlProjectDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProjectDetailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAddCandidate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
+        );
+        pnlProjectDetailsLayout.setVerticalGroup(
+            pnlProjectDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProjectDetailsLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addGroup(pnlProjectDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(lblAddCandidate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/office/photo/3.png"))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(188, 124, 156));
+
+        lblSalaryStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblSalaryStatus.setForeground(new java.awt.Color(255, 255, 255));
+        lblSalaryStatus.setText("Salary Status");
+        lblSalaryStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSalaryStatusMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/office/photo/projecdetails.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lblSalaryStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSalaryStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(188, 124, 156));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/office/photo/Logout Rounded Up_30px.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Logout");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAddProject3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlProjectDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(pnlAddProject3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(pnlProjectDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
+        );
+
+        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        pnlMain.setLayout(pnlMainLayout);
+        pnlMainLayout.setHorizontalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2_base, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
+        );
+        pnlMainLayout.setVerticalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanel2_base, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void lblAddCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddCandidateMouseClicked
+        //jPanel2_base.remove(managerHello);
+        jPanel2_base.removeAll();
+        c1.setVisible(true);
+        jPanel2_base.add(c1);
+        pack();
+        
+
+    }//GEN-LAST:event_lblAddCandidateMouseClicked
+
+    private void lblAddManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddManagerMouseClicked
+        // TODO add your handling code here:
+        jPanel2_base.removeAll();
+        jPanel2_base.add(w1);
+        jPanel2_base.repaint();
+        jPanel2_base.validate();
+        pack();
+        
+    }//GEN-LAST:event_lblAddManagerMouseClicked
+
+    private void lblSalaryStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalaryStatusMouseClicked
+        jPanel2_base.removeAll();
+        sp.setVisible(true);
+        jPanel2_base.add(sp);
+        jPanel2_base.repaint();
+        jPanel2_base.validate();
+        pack();
+    }//GEN-LAST:event_lblSalaryStatusMouseClicked
+
+    private void jLabel6MinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MinMouseClicked
+        // TODO add your handling code here:
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_jLabel6MinMouseClicked
+
+    private void jLabel5CutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5CutMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel5CutMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        la.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(HomeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HomeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HomeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HomeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                homeadmin=new HomeAdmin();
+                homeadmin.setVisible(true);
+//                new HomeAdmin().setVisible(true);
+                
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel5Cut;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel6Min;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel2_base;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblAddCandidate;
+    private javax.swing.JLabel lblAddManager;
+    private javax.swing.JLabel lblSalaryStatus;
+    private javax.swing.JPanel pnlAddProject3;
+    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlProjectDetails;
+    // End of variables declaration//GEN-END:variables
+    private static HomeAdmin homeadmin;
+        }
+
